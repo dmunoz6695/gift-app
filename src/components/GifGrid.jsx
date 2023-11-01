@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { getGifs } from '../helpers/getGifs'
+import React from 'react'
 import GifItem from './GifItem'
+import useFetchGifs from '../hooks/useFetchGifs'
 
 // eslint-disable-next-line react/prop-types
 const GifGrid = ({ category }) => {
-  const [images, setImages] = useState([])
-  const getImages = async () => {
-    const newImages = await getGifs(category)
-    setImages(newImages)
-  }
-
-  useEffect(() => {
-    getImages()
-  }, [])
+  const { images } = useFetchGifs(category)
 
   return (
     <>
